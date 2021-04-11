@@ -1,22 +1,24 @@
 <template>
   <section>FILTER</section>
   <section>
-    <div class="controls">
-      <button>Refresh</button>
-      <router-link to="/register">Register as Tutor</router-link>
-    </div>
-    <ul v-if="hasTutors">
-      <tutor-item
-        v-for="tutor in filteredTutors"
-        :key="tutor.id"
-        :id="tutor.id"
-        :firstName="tutor.firstName"
-        :lastName="tutor.lastName"
-        :rate="tutor.rate"
-        :areas="tutor.areas"
-      ></tutor-item>
-    </ul>
-    <h1 v-else>No tutors found...</h1>
+    <base-card>
+      <div class="controls">
+        <base-button mode="outline">Refresh</base-button>
+        <base-button link to="/register">Register as Tutor</base-button>
+      </div>
+      <ul v-if="hasTutors">
+        <tutor-item
+          v-for="tutor in filteredTutors"
+          :key="tutor.id"
+          :id="tutor.id"
+          :firstName="tutor.firstName"
+          :lastName="tutor.lastName"
+          :rate="tutor.hourlyRate"
+          :areas="tutor.areas"
+        ></tutor-item>
+      </ul>
+      <h1 v-else>No tutors found...</h1>
+    </base-card>
   </section>
 </template>
 
