@@ -3,7 +3,7 @@
   <section>
     <base-card>
       <div class="controls">
-        <base-button mode="outline">Refresh</base-button>
+        <base-button mode="outline" @click="loadTutors">Refresh</base-button>
         <base-button v-if="!isTutor" link to="/register"
           >Register as Tutor</base-button
         >
@@ -69,7 +69,13 @@ export default {
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
     },
+    loadTutors() {
+      this.$store.dispatch("tutors/loadTutors");
+    },
   },
+  created(){
+    this.loadTutors()
+  }
 };
 </script>
 
