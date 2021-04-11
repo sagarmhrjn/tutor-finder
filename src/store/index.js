@@ -1,11 +1,13 @@
 import { createStore } from 'vuex'
 
 import tutorsModule from './modules/tutors'
+import requestsModule from './modules/requests'
 
 
 const store = createStore({
     modules: {
-        tutors: tutorsModule
+        tutors: tutorsModule,
+        requests: requestsModule
     },
     state() {
         return {

@@ -17,7 +17,7 @@
       Please enter a valid email and non empty message.
     </p>
     <div class="actions">
-      <base-buttons>Send Message</base-buttons>
+      <base-button>Send Message</base-button>
     </div>
   </form>
 </template>
@@ -42,6 +42,12 @@ export default {
         this.formIsValid = false;
         return;
       }
+      this.$store.dispatch("requests/contactTutor", {
+        email: this.email,
+        message: this.message,
+        coachId: this.$route.params.id,
+      });
+      this.$router.replace("/tutors");
     },
   },
 };

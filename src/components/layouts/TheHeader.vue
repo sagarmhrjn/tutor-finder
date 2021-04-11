@@ -9,7 +9,7 @@
           <router-link to="tutors">All Tutors</router-link>
         </li>
         <li>
-          <router-link to="/request">All Requests</router-link>
+          <router-link to="/requests">All Requests</router-link>
         </li>
       </ul>
     </nav>
