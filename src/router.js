@@ -7,7 +7,7 @@ import TutorContact from './pages/requests/TutorContact'
 import RequestsReceived from './pages/requests/RequestsReceived'
 import NotFound from './pages/NotFound'
 
-const routes = createRouter({
+const router = createRouter({
     history: createWebHistory(),
     routes: [
         { path: '/', redirect: '/tutors' },
@@ -22,3 +22,5 @@ const routes = createRouter({
         { path: '/:notFound(.*)', component: NotFound }
     ]
 })
+
+export default router
