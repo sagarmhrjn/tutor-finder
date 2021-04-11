@@ -13,8 +13,10 @@ const router = createRouter({
         { path: '/', redirect: '/tutors' },
         { path: '/tutors', component: TutorsList },
         {
-            path: '/tutors/:id', component: TutorDetail, children: [
-                { path: '/contact', component: TutorContact },  //  /tutors/t1/contact
+            path: '/tutors/:id',
+            component: TutorDetail,
+            children: [
+                { path: 'contact', component: TutorContact },  //  /tutors/t1/contact
             ]
         },
         { path: '/register', component: TutorRegistration },

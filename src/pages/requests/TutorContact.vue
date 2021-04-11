@@ -1,10 +1,5 @@
-<template>
-    <div></div>
-</template>
+<template>CONTACT A TUTOR</template>
 
 <script>
-export default {
-    
-    
-}
+export default {};
 </script>
