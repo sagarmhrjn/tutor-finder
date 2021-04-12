@@ -6,6 +6,7 @@ import TutorDetail from './pages/tutors/TutorDetail'
 import TutorContact from './pages/requests/TutorContact'
 import RequestsReceived from './pages/requests/RequestsReceived'
 import NotFound from './pages/NotFound'
+import UserAuth from './pages/auth/UserAuth'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -22,6 +23,7 @@ const router = createRouter({
         },
         { path: '/register', component: TutorRegistration },
         { path: '/requests', component: RequestsReceived },
+        { path: '/auth', component: UserAuth },
         { path: '/:notFound(.*)', component: NotFound }
     ]
 })
