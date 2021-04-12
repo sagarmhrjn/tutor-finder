@@ -5,7 +5,9 @@ import authGetters from './getters'
 export default {
     state() {
         return {
-            userId: 'c1'
+            userId: null,
+            token: null,
+            tokenExpiration: null
         }
     },
     mutations: authMutations,
