@@ -1,38 +1,40 @@
 <template>
-  <!-- !! -> convert string to real truthy value Boolean -->
-  <base-dialog :show="!!error" title="An error occured!" @close="handleError">
-    <p>{{ error }}</p>
-  </base-dialog>
-  <section>
-    <tutor-filter @change-filter="setFilters"></tutor-filter>
-  </section>
-  <section>
-    <base-card>
-      <div class="controls">
-        <base-button mode="outline" @click="loadTutors(true)"
-          >Refresh</base-button
-        >
-        <base-button v-if="!isTutor && !isLoading" link to="/register"
-          >Register as Tutor</base-button
-        >
-      </div>
-      <div v-if="isLoading">
-        <base-spinner></base-spinner>
-      </div>
-      <ul v-else-if="hasTutors">
-        <tutor-item
-          v-for="tutor in filteredTutors"
-          :key="tutor.id"
-          :id="tutor.id"
-          :firstName="tutor.firstName"
-          :lastName="tutor.lastName"
-          :rate="tutor.hourlyRate"
-          :areas="tutor.areas"
-        ></tutor-item>
-      </ul>
-      <h1 v-else>No tutors found...</h1>
-    </base-card>
-  </section>
+  <div>
+    <!-- !! -> convert string to real truthy value Boolean -->
+    <base-dialog :show="!!error" title="An error occured!" @close="handleError">
+      <p>{{ error }}</p>
+    </base-dialog>
+    <section>
+      <tutor-filter @change-filter="setFilters"></tutor-filter>
+    </section>
+    <section>
+      <base-card>
+        <div class="controls">
+          <base-button mode="outline" @click="loadTutors(true)"
+            >Refresh</base-button
+          >
+          <base-button v-if="!isTutor && !isLoading" link to="/register"
+            >Register as Tutor</base-button
+          >
+        </div>
+        <div v-if="isLoading">
+          <base-spinner></base-spinner>
+        </div>
+        <ul v-else-if="hasTutors">
+          <tutor-item
+            v-for="tutor in filteredTutors"
+            :key="tutor.id"
+            :id="tutor.id"
+            :firstName="tutor.firstName"
+            :lastName="tutor.lastName"
+            :rate="tutor.hourlyRate"
+            :areas="tutor.areas"
+          ></tutor-item>
+        </ul>
+        <h1 v-else>No tutors found...</h1>
+      </base-card>
+    </section>
+  </div>
 </template>
 
 <script>
