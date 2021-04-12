@@ -4,11 +4,14 @@
     <base-card>
       <div class="controls">
         <base-button mode="outline" @click="loadTutors">Refresh</base-button>
-        <base-button v-if="!isTutor" link to="/register"
+        <base-button v-if="!isTutor && !isLoading" link to="/register"
           >Register as Tutor</base-button
         >
       </div>
-      <ul v-if="hasTutors">
+      <div v-if="isLoading">
+        <base-spinner></base-spinner>
+      </div>
+      <ul v-else-if="hasTutors">
         <tutor-item
           v-for="tutor in filteredTutors"
           :key="tutor.id"
@@ -35,6 +38,7 @@ export default {
   },
   data() {
     return {
+      isLoading: true,
       activeFilters: {
         frontend: true,
         backend: true,
@@ -62,20 +66,22 @@ export default {
       });
     },
     hasTutors() {
-      return this.$store.getters["tutors/hasTutors"];
+      return !this.isLoading && this.$store.getters["tutors/hasTutors"];
     },
   },
   methods: {
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
     },
-    loadTutors() {
-      this.$store.dispatch("tutors/loadTutors");
+    async loadTutors() {
+      this.isLoading = true
+      await this.$store.dispatch("tutors/loadTutors");
+      this.isLoading = false;
     },
   },
-  created(){
-    this.loadTutors()
-  }
+  created() {
+    this.loadTutors();
+  },
 };
 </script>
 
