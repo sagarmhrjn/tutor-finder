@@ -25,7 +25,7 @@ export default {
         })
     },
     async loadTutors(context) {
-        const response = await fetch(`https://vue-http-demo-c43fa-default-rtdb.firebaseio.com/tutors.jso`)
+        const response = await fetch(`https://vue-http-demo-c43fa-default-rtdb.firebaseio.com/tutors.json`)
 
         const responseData = await response.json()
 
