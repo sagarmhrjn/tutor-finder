@@ -1,5 +1,11 @@
 <template>
-  <tutor-filter @change-filter="setFilters"></tutor-filter>
+  <!-- !! -> convert string to real truthy value Boolean -->
+  <base-dialog :show="!!error" title="An error occured!" @close="handleError">
+    <p>{{ error }}</p>
+  </base-dialog>
+  <section>
+    <tutor-filter @change-filter="setFilters"></tutor-filter>
+  </section>
   <section>
     <base-card>
       <div class="controls">
@@ -44,6 +50,7 @@ export default {
         backend: true,
         career: true,
       },
+      error: null,
     };
   },
   computed: {
@@ -74,9 +81,16 @@ export default {
       this.activeFilters = updatedFilters;
     },
     async loadTutors() {
-      this.isLoading = true
-      await this.$store.dispatch("tutors/loadTutors");
+      this.isLoading = true;
+      try {
+        await this.$store.dispatch("tutors/loadTutors");
+      } catch (error) {
+        this.error = error.message || "Something went wrong!";
+      }
       this.isLoading = false;
+    },
+    handleError() {
+      this.error = null;
     },
   },
   created() {

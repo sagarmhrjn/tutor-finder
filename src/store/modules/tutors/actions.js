@@ -25,12 +25,13 @@ export default {
         })
     },
     async loadTutors(context) {
-        const response = await fetch(`https://vue-http-demo-c43fa-default-rtdb.firebaseio.com/tutors.json`)
+        const response = await fetch(`https://vue-http-demo-c43fa-default-rtdb.firebaseio.com/tutors.jso`)
 
         const responseData = await response.json()
 
         if (!response.ok) {
-            // error todo
+            const error = new Error(responseData.message || 'Failed to fetch!')
+            throw error
         }
 
         const tutors = []
