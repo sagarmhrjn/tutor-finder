@@ -24,7 +24,10 @@ export default {
             id: userId
         })
     },
-    async loadTutors(context) {
+    async loadTutors(context, payload) {
+        if (!payload.forceRefresh && !context.getters.shouldUpdate) {
+            return
+        }
         const response = await fetch(`https://vue-http-demo-c43fa-default-rtdb.firebaseio.com/tutors.json`)
 
         const responseData = await response.json()
@@ -48,5 +51,6 @@ export default {
             tutors.push(tutor)
         }
         context.commit('setTutors', tutors)
+        context.commit('setFetchTimeStamp')
     }
 }

@@ -11,5 +11,14 @@ export default {
         const userId = rootGetters.userId
         // check if user id is present in tutor object id
         return tutors.some(tutor => tutor.id === userId)
+    },
+    shouldUpdate(state) {
+        const lastFetch = state.lastFetch
+        if (!lastFetch) {
+            return true
+        } else {
+            const currentTimeStamp = new Date().getTime()
+            return (currentTimeStamp - lastFetch) / 1000 > 60
+        }
     }
 }

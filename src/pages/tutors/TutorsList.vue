@@ -9,7 +9,9 @@
   <section>
     <base-card>
       <div class="controls">
-        <base-button mode="outline" @click="loadTutors">Refresh</base-button>
+        <base-button mode="outline" @click="loadTutors(true)"
+          >Refresh</base-button
+        >
         <base-button v-if="!isTutor && !isLoading" link to="/register"
           >Register as Tutor</base-button
         >
@@ -80,10 +82,12 @@ export default {
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
     },
-    async loadTutors() {
+    async loadTutors(refresh = false) {
       this.isLoading = true;
       try {
-        await this.$store.dispatch("tutors/loadTutors");
+        await this.$store.dispatch("tutors/loadTutors", {
+          forceRefresh: refresh,
+        });
       } catch (error) {
         this.error = error.message || "Something went wrong!";
       }
