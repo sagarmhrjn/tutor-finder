@@ -13,7 +13,8 @@
           <base-button mode="outline" @click="loadTutors(true)"
             >Refresh</base-button
           >
-          <base-button v-if="!isTutor && !isLoading" link to="/register"
+          <base-button link to="/auth" v-if="!isLoggedIn">Login</base-button>
+          <base-button v-if="isLoggedIn && !isTutor && !isLoading" link to="/register"
             >Register as Tutor</base-button
           >
         </div>
@@ -58,6 +59,9 @@ export default {
     };
   },
   computed: {
+    isLoggedIn() {
+      return this.$store.getters.isAuthenticated;
+    },
     isTutor() {
       return this.$store.getters["tutors/isTutor"];
     },
