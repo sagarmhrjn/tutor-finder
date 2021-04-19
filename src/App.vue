@@ -13,6 +13,18 @@ export default {
   components: {
     TheHeader,
   },
+  computed: {
+    didAutoLogout() {
+      return this.$store.getters.didAutoLogout;
+    },
+  },
+  watch: {
+    didAutoLogout(currentValue, oldValue) {
+      if (currentValue && currentValue != oldValue) {
+        this.$router.replace("/tutors");
+      }
+    },
+  },
   created() {
     this.$store.dispatch("tryLogin");
   },
